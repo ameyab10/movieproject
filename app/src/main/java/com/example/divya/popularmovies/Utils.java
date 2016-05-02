@@ -17,18 +17,12 @@ public class Utils {
     }
 
     public static void watchYoutubeVideo(String id, Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(id));
         try {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
             activity.startActivity(intent);
-        } catch (ActivityNotFoundException ex) {
-            Intent intent = new Intent(Intent.ACTION_VIEW,
-//                    Uri.parse("http://www.youtube.com/watch?v=" + id));
-                    Uri.parse(id));
-            try {
-                activity.startActivity(intent);
-            } catch (ActivityNotFoundException e) {
-                Log.e("Utils", "Error launching youtube", e);
-            }
+        } catch (ActivityNotFoundException e) {
+            Log.e("Utils", "Error launching youtube", e);
         }
     }
 
